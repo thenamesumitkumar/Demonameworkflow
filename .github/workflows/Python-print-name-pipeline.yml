@@ -1,40 +1,41 @@
 name: Python Print Name Pipeline
 
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 
 jobs:
-job1:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout repo
-uses: actions/checkout@v3
- .github/workflows/Python-print-name-pipeline.yml
-- name: Run Python script
-run: |
-echo "name='Alice'" > name.py
-echo "print(name)" >> name.py
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-- name: Upload artifact
-uses: actions/upload-artifact@v3
-with:
-name: name-file
-path: name.py
+      - name: Create Python script
+        run: |
+          echo "name='Alice'" > name.py
+          echo "print(name)" >> name.py
 
-job2:
-runs-on: ubuntu-latest
-needs: job1
-steps:
-- name: Download artifact
-uses: actions/download-artifact@v3
-with:
-name: name-file
-path: .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: name-file
+          path: name.py
 
-- name: Show file content
-run: |
-cat name.py
-# Optional: run it
-python3 name.py
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: name-file
+          path: .
+
+      - name: Show and run Python script
+        run: |
+          echo "Contents of name.py:"
+          cat name.py
+          echo "Running the script..."
+          python3 name.py
