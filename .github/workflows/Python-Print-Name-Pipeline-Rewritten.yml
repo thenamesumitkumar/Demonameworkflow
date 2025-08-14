@@ -1,4 +1,4 @@
-name: Python Print Name Pipeline Rewritten
+name: Python Print Name Rewritten
 
 on:
   workflow_dispatch:
