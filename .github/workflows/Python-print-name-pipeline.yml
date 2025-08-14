@@ -11,7 +11,7 @@ runs-on: ubuntu-latest
 steps:
 - name: Checkout repo
 uses: actions/checkout@v3
-
+ .github/workflows/Python-print-name-pipeline.yml
 - name: Run Python script
 run: |
 echo "name='Alice'" > name.py
