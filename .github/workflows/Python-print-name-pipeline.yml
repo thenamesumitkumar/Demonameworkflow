@@ -14,11 +14,8 @@ jobs:
 
       - name: Create Python script
         run: |
-          echo "name='Enter your name'" > name.py
+          echo "name='Sumit'" > name.py
           echo "print(name)" >> name.py
-
-          description: 'Enter your name'
-          required: true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
