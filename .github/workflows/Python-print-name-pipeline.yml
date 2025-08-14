@@ -1,0 +1,40 @@
+name: Python Print Name Pipeline
+
+on:
+push:
+branches:
+- main
+
+jobs:
+job1:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout repo
+uses: actions/checkout@v3
+
+- name: Run Python script
+run: |
+echo "name='Alice'" > name.py
+echo "print(name)" >> name.py
+
+- name: Upload artifact
+uses: actions/upload-artifact@v3
+with:
+name: name-file
+path: name.py
+
+job2:
+runs-on: ubuntu-latest
+needs: job1
+steps:
+- name: Download artifact
+uses: actions/download-artifact@v3
+with:
+name: name-file
+path: .
+
+- name: Show file content
+run: |
+cat name.py
+# Optional: run it
+python3 name.py
