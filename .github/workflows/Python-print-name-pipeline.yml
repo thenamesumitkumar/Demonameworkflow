@@ -1,4 +1,4 @@
-name: Python Print Name Pipeline
+name: Python Print Name
 
 on:
   workflow_dispatch:
