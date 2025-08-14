@@ -6,7 +6,7 @@ on:
       user_name:
         description: 'Enter the name to print'
         required: true
-        default: 'Alice'
+        default: 'Pls add you name here after replacing this'
 
 jobs:
   job1:
